@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tài Khoản - Nike Redesign</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="toast" class="toast"></div>
+
+<nav class="main-nav" id="main-nav">
+    <div class="nav-inner">
+        <div class="nav-left">
+            <a href="index.html" class="nav-logo">
+                <svg viewBox="0 0 100 40" fill="white" class="w-10 h-8"><path d="M8 34 C14 30, 78 12, 94 6 C82 14, 18 32, 8 34Z"/></svg>
+                <span style="font-family:'Oswald',sans-serif;font-weight:700;font-size:20px;letter-spacing:3px;">NIKE</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Trang Chủ</a>
+                <a href="running.html" class="nav-link">Cửa Hàng</a>
+                <a href="about.html" class="nav-link">Về Chúng Tôi</a>
+                <a href="contact.html" class="nav-link">Liên Hệ</a>
+            </div>
+        </div>
+        <div class="nav-right">
+            <a href="checkout.html" class="nav-icon"><i class="fa-solid fa-bag-shopping"></i><span id="cart-count" class="cart-badge">0</span></a>
+            <a href="account.html" class="nav-icon" style="color:#fff;"><i class="fa-regular fa-user"></i></a>
+            <button class="mobile-toggle" onclick="toggleMobileMenu()" aria-label="Menu"><i class="fa-solid fa-bars"></i></button>
+        </div>
+    </div>
+    <div class="mobile-menu" id="mobile-menu">
+        <a href="index.html" class="nav-link">Trang Chủ</a>
+        <a href="running.html" class="nav-link">Cửa Hàng</a>
+        <a href="about.html" class="nav-link">Về Chúng Tôi</a>
+        <a href="contact.html" class="nav-link">Liên Hệ</a>
+    </div>
+</nav>
+
+<div class="section">
+    <div class="account-layout">
+        <aside class="account-sidebar">
+            <h2 style="font-family:'Oswald',sans-serif;font-size:18px;letter-spacing:2px;font-weight:600;margin-bottom:24px;">TÀI KHOẢN</h2>
+            <div class="sidebar-link active" onclick="switchTab(this)">Hồ Sơ</div>
+            <div class="sidebar-link" onclick="switchTab(this)">Đơn Hàng</div>
+            <div class="sidebar-link" onclick="switchTab(this)">Cài Đặt</div>
+            <div class="sidebar-link logout" onclick="showToast('Đã đăng xuất thành công')">Đăng Xuất</div>
+        </aside>
+
+        <div style="flex:1;">
+            <div class="welcome-bar">
+                <div class="welcome-avatar">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&q=80" alt="Alex">
+                </div>
+                <div class="welcome-info">
+                    <h1>CHÀO MỪNG TRỞ LẠI, ALEX</h1>
+                    <p>Thành viên từ tháng 1 năm 2023</p>
+                </div>
+                <button class="btn-outline btn-sm edit-profile-btn" onclick="toggleEdit()">CHỈNH SỬA HỒ SƠ</button>
+            </div>
+
+            <div class="edit-form" id="edit-form">
+                <h3>CHỈNH SỬA HỒ SƠ</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">HỌ</label>
+                        <input type="text" class="form-input" value="Alex">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">TÊN</label>
+                        <input type="text" class="form-input" value="Johnson">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">EMAIL</label>
+                    <input type="email" class="form-input" value="alex.johnson@email.com">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">SỐ ĐIỆN THOẠI</label>
+                    <input type="tel" class="form-input" value="+1 (555) 123-4567">
+                </div>
+                <div class="btn-row">
+                    <button class="btn-primary btn-sm" onclick="toggleEdit();showToast('Hồ sơ đã được cập nhật thành công')">LƯU THAY ĐỔI</button>
+                    <button class="btn-outline btn-sm" onclick="toggleEdit()">HỦY</button>
+                </div>
+            </div>
+
+            <div class="account-grid">
+                <div>
+                    <h2 style="font-family:'Oswald',sans-serif;font-size:18px;letter-spacing:2px;font-weight:600;margin-bottom:24px;">ĐƠN HÀNG GẦN ĐÂY</h2>
+                    <div class="order-row">
+                        <div class="order-thumb">
+                            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=200&h=200&fit=crop&q=80" alt="Nike ZoomX Vaporfly">
+                        </div>
+                        <div class="order-info">
+                            <h4>NIKE ZOOMX VAPORFLY</h4>
+                            <p>Size: 42 &bull; Màu: Xanh Volt</p>
+                            <p>Đơn #NK-2024-8842 &bull; 15/12/2024</p>
+                        </div>
+                        <div class="order-price">
+                            <p class="price-val">$260.00</p>
+                            <span class="order-status">Đã Giao</span>
+                        </div>
+                    </div>
+                    <div class="order-row">
+                        <div class="order-thumb">
+                            <img src="https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=200&h=200&fit=crop&q=80" alt="Air Max Alpha">
+                        </div>
+                        <div class="order-info">
+                            <h4>AIR MAX ALPHA</h4>
+                            <p>Size: 43 &bull; Màu: Đen/Trắng</p>
+                            <p>Đơn #NK-2024-8617 &bull; 28/11/2024</p>
+                        </div>
+                        <div class="order-price">
+                            <p class="price-val">$150.00</p>
+                            <span class="order-status">Đã Giao</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="stats-card">
+                        <h3>THỐNG KÊ THÀNH VIÊN</h3>
+                        <div class="stat-item">
+                            <p class="stat-num">142</p>
+                            <p class="stat-label">ĐIỂM THÀNH VIÊN NIKE</p>
+                        </div>
+                        <div class="stat-item">
+                            <p class="stat-num" style="font-size:36px;">4.500</p>
+                            <p class="stat-label">DẶM ĐÃ CHẠY</p>
+                        </div>
+                        <div class="stat-item">
+                            <p class="stat-num" style="font-size:36px;">12</p>
+                            <p class="stat-label">ĐƠN HÀNG ĐÃ ĐẶT</p>
+                        </div>
+                    </div>
+                    <div class="recommend-card">
+                        <p class="accent-label" style="margin-bottom:12px;">GỢI Ý CHO BẠN</p>
+                        <div class="rec-img">
+                            <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&h=500&fit=crop&q=80" alt="Áo thun Nike">
+                        </div>
+                        <p class="rec-name">ÁO THUN NIKE DRI-FIT</p>
+                        <p class="rec-price">$35.00</p>
+                        <button class="btn-outline btn-sm" style="width:100%;margin-top:12px;padding:8px 16px;font-size:11px;" onclick="addToCart('Áo Thun Nike Dri-Fit',35)">THÊM VÀO GIỎ</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="site-footer">
+    <div class="footer-inner">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div style="display:flex;align-items:center;gap:8px;">
+                    <svg viewBox="0 0 100 40" fill="white" class="w-8 h-6"><path d="M8 34 C14 30, 78 12, 94 6 C82 14, 18 32, 8 34Z"/></svg>
+                    <span style="font-family:'Oswald',sans-serif;font-weight:700;font-size:18px;letter-spacing:3px;">NIKE</span>
+                </div>
+                <p>Mang đến cảm hứng và đổi mới cho mọi vận động viên trên thế giới.</p>
+            </div>
+            <div class="footer-col"><h4>SẢN PHẨM</h4><ul><li><a href="running.html">Giày</a></li><li><a href="#">Quần Áo</a></li><li><a href="#">Phụ Kiện</a></li><li><a href="#">Hàng Mới</a></li></ul></div>
+            <div class="footer-col"><h4>THỂ THAO</h4><ul><li><a href="running.html">Chạy Bộ</a></li><li><a href="#">Đào Tạo</a></li><li><a href="#">Bóng Rổ</a></li><li><a href="#">Bóng Đá</a></li></ul></div>
+            <div class="footer-col"><h4>CÔNG TY</h4><ul><li><a href="about.html">Về Nike</a></li><li><a href="#">Bền Vững</a></li><li><a href="#">Tuyển Dụng</a></li><li><a href="#">Tin Tức</a></li></ul></div>
+            <div class="footer-col"><h4>HỖ TRỢ</h4><ul><li><a href="contact.html">Trung Tâm Trợ Giúp</a></li><li><a href="contact.html">Liên Hệ</a></li><li><a href="#">Đổi Trả</a></li><li><a href="#">Giao Hàng</a></li></ul></div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Nike, Inc. Mọi quyền được bảo lưu. Đây là bản thiết kế lại.</p>
+            <div class="footer-socials">
+                <a aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                <a aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                <a aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    function getCart(){try{return JSON.parse(localStorage.getItem('nike_cart'))||[];}catch(e){return[];}}
+    function saveCart(c){localStorage.setItem('nike_cart',JSON.stringify(c));updateCartBadge();}
+    function addToCart(n,p){const c=getCart();const e=c.find(i=>i.name===n);if(e)e.qty++;else c.push({name:n,price:p,qty:1});saveCart(c);showToast('Đã thêm '+n+' vào giỏ hàng');}
+    function updateCartBadge(){const c=getCart();const b=document.getElementById('cart-count');const n=c.reduce((s,i)=>s+i.qty,0);b.textContent=n;b.style.display=n>0?'flex':'none';}
+    function showToast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500);}
+    function toggleMobileMenu(){document.getElementById('mobile-menu').classList.toggle('open');}
+    function toggleEdit(){document.getElementById('edit-form').classList.toggle('open');}
+    function switchTab(el){document.querySelectorAll('.sidebar-link').forEach(l=>l.classList.remove('active'));el.classList.add('active');}
+    window.addEventListener('scroll',()=>{document.getElementById('main-nav').classList.toggle('scrolled',window.scrollY>80);});
+    updateCartBadge();
+</script>
+</body>
+</html>

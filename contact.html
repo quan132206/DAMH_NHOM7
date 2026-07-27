@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hỗ Trợ & Liên Hệ - Nike Redesign</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="toast" class="toast"></div>
+
+<nav class="main-nav" id="main-nav">
+    <div class="nav-inner">
+        <div class="nav-left">
+            <a href="index.html" class="nav-logo">
+                <svg viewBox="0 0 100 40" fill="white" class="w-10 h-8"><path d="M8 34 C14 30, 78 12, 94 6 C82 14, 18 32, 8 34Z"/></svg>
+                <span style="font-family:'Oswald',sans-serif;font-weight:700;font-size:20px;letter-spacing:3px;">NIKE</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Trang Chủ</a>
+                <a href="running.html" class="nav-link">Cửa Hàng</a>
+                <a href="about.html" class="nav-link">Về Chúng Tôi</a>
+                <a href="contact.html" class="nav-link active">Liên Hệ</a>
+            </div>
+        </div>
+        <div class="nav-right">
+            <a href="checkout.html" class="nav-icon"><i class="fa-solid fa-bag-shopping"></i><span id="cart-count" class="cart-badge">0</span></a>
+            <a href="account.html" class="nav-icon"><i class="fa-regular fa-user"></i></a>
+            <button class="mobile-toggle" onclick="toggleMobileMenu()" aria-label="Menu"><i class="fa-solid fa-bars"></i></button>
+        </div>
+    </div>
+    <div class="mobile-menu" id="mobile-menu">
+        <a href="index.html" class="nav-link">Trang Chủ</a>
+        <a href="running.html" class="nav-link">Cửa Hàng</a>
+        <a href="about.html" class="nav-link">Về Chúng Tôi</a>
+        <a href="contact.html" class="nav-link active">Liên Hệ</a>
+    </div>
+</nav>
+
+<div class="section contact-page">
+    <h1 class="page-header" style="padding-bottom:0;">HỖ TRỢ</h1>
+    <p style="color:#666;margin-bottom:48px;">Chúng tôi ở đây để giúp bạn với mọi vấn đề.</p>
+
+    <div style="margin-bottom:64px;">
+        <h2 class="section-title" style="margin-bottom:24px;">CHÚNG TÔI CÓ THỂ GIÚP GÌ?</h2>
+        <div class="search-bar">
+            <input type="text" class="form-input" placeholder="Tìm kiếm trợ giúp...">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
+    </div>
+
+    <div class="service-modules">
+        <div class="service-module" onclick="showToast('Đang mở trang Trạng Thái Đơn Hàng...')">
+            <i class="fa-solid fa-box"></i>
+            <h3>Trạng Thái Đơn Hàng</h3>
+            <p>Theo dõi đơn hàng từ lúc gửi đến khi giao.</p>
+        </div>
+        <div class="service-module" onclick="showToast('Đang tải thông tin Đổi Trả...')">
+            <i class="fa-solid fa-rotate-left"></i>
+            <h3>Đổi Trả Hàng</h3>
+            <p>Bắt đầu đổi hoặc trả hàng trong vòng 60 ngày.</p>
+        </div>
+        <div class="service-module" onclick="showToast('Đang tải chi tiết Giao Hàng...')">
+            <i class="fa-solid fa-truck"></i>
+            <h3>Giao Hàng</h3>
+            <p>Miễn phí giao hàng cho đơn trên $50. Tìm hiểu thêm.</p>
+        </div>
+        <div class="service-module" onclick="showToast('Đang tải thông tin Sản Phẩm...')">
+            <i class="fa-solid fa-circle-info"></i>
+            <h3>Thông Tin Sản Phẩm</h3>
+            <p>Bảng kích cỡ, chất liệu và thông số kỹ thuật.</p>
+        </div>
+    </div>
+
+    <div class="contact-grid">
+        <div>
+            <h2 class="section-title" style="margin-bottom:32px;">LIÊN HỆ TRỰC TIẾP</h2>
+            <form id="contact-form" onsubmit="return handleSubmit(event)">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">HỌ</label>
+                        <input type="text" class="form-input" placeholder="Nguyễn" required id="cf-fname">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">TÊN</label>
+                        <input type="text" class="form-input" placeholder="Văn A" required id="cf-lname">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">EMAIL</label>
+                    <input type="email" class="form-input" placeholder="nguyenvana@email.com" required id="cf-email">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">CHỦ ĐỀ</label>
+                    <select class="form-input" required>
+                        <option value="">Chọn chủ đề</option>
+                        <option>Vấn Đề Đơn Hàng</option>
+                        <option>Câu Hỏi Sản Phẩm</option>
+                        <option>Đổi / Trả Hàng</option>
+                        <option>Khác</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">NỘI DUNG</label>
+                    <textarea class="form-input" rows="5" placeholder="Cho chúng tôi biết chúng tôi có thể giúp gì..." required id="cf-msg"></textarea>
+                </div>
+                <button type="submit" class="btn-primary">GỬI TIN NHẮN</button>
+                <p id="contact-success" class="success-msg">Tin nhắn đã được gửi thành công. Chúng tôi sẽ phản hồi trong vòng 24 giờ.</p>
+            </form>
+        </div>
+        <div>
+            <h2 class="section-title" style="margin-bottom:32px;">CÁC CÁCH KHÁC ĐỂ LIÊN HỆ</h2>
+            <div class="contact-side-card">
+                <div class="card-header">
+                    <i class="fa-solid fa-comments"></i>
+                    <h3>CHAT TRỰC TUYẾN</h3>
+                </div>
+                <p>Có mặt 7 ngày/tuần, 4:00 SA - 11:00 CH (giờ VN).</p>
+                <button class="btn-outline btn-sm" style="width:100%;margin-top:16px;" onclick="showToast('Đang kết nối chat trực tuyến...')">BẮT ĐẦU CHAT</button>
+            </div>
+            <div class="contact-side-card">
+                <div class="card-header">
+                    <i class="fa-solid fa-phone"></i>
+                    <h3>GỌI ĐIỆN</h3>
+                </div>
+                <p>Thứ 2 - Thứ 6, 8:00 SA - 8:00 CH</p>
+                <p class="phone-number">1-800-344-6453</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="site-footer">
+    <div class="footer-inner">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div style="display:flex;align-items:center;gap:8px;">
+                    <svg viewBox="0 0 100 40" fill="white" class="w-8 h-6"><path d="M8 34 C14 30, 78 12, 94 6 C82 14, 18 32, 8 34Z"/></svg>
+                    <span style="font-family:'Oswald',sans-serif;font-weight:700;font-size:18px;letter-spacing:3px;">NIKE</span>
+                </div>
+                <p>Mang đến cảm hứng và đổi mới cho mọi vận động viên trên thế giới.</p>
+            </div>
+            <div class="footer-col"><h4>SẢN PHẨM</h4><ul><li><a href="running.html">Giày</a></li><li><a href="#">Quần Áo</a></li><li><a href="#">Phụ Kiện</a></li><li><a href="#">Hàng Mới</a></li></ul></div>
+            <div class="footer-col"><h4>THỂ THAO</h4><ul><li><a href="running.html">Chạy Bộ</a></li><li><a href="#">Đào Tạo</a></li><li><a href="#">Bóng Rổ</a></li><li><a href="#">Bóng Đá</a></li></ul></div>
+            <div class="footer-col"><h4>CÔNG TY</h4><ul><li><a href="about.html">Về Nike</a></li><li><a href="#">Bền Vững</a></li><li><a href="#">Tuyển Dụng</a></li><li><a href="#">Tin Tức</a></li></ul></div>
+            <div class="footer-col"><h4>HỖ TRỢ</h4><ul><li><a href="contact.html">Trung Tâm Trợ Giúp</a></li><li><a href="contact.html">Liên Hệ</a></li><li><a href="#">Đổi Trả</a></li><li><a href="#">Giao Hàng</a></li></ul></div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Nike, Inc. Mọi quyền được bảo lưu. Đây là bản thiết kế lại.</p>
+            <div class="footer-socials">
+                <a aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                <a aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                <a aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    function getCart(){try{return JSON.parse(localStorage.getItem('nike_cart'))||[];}catch(e){return[];}}
+    function updateCartBadge(){const c=getCart();const b=document.getElementById('cart-count');const n=c.reduce((s,i)=>s+i.qty,0);b.textContent=n;b.style.display=n>0?'flex':'none';}
+    function toggleMobileMenu(){document.getElementById('mobile-menu').classList.toggle('open');}
+    function showToast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500);}
+    function handleSubmit(e){
+        e.preventDefault();
+        const fn=document.getElementById('cf-fname').value.trim();
+        const ln=document.getElementById('cf-lname').value.trim();
+        const em=document.getElementById('cf-email').value.trim();
+        const mg=document.getElementById('cf-msg').value.trim();
+        if(!fn||!ln||!em||!mg){showToast('Vui lòng điền đầy đủ các trường bắt buộc');return false;}
+        if(!em.includes('@')||!em.includes('.')){showToast('Vui lòng nhập email hợp lệ');return false;}
+        document.getElementById('contact-success').classList.add('show');
+        document.getElementById('contact-form').reset();
+        showToast('Tin nhắn đã được gửi thành công');
+        setTimeout(()=>document.getElementById('contact-success').classList.remove('show'),5000);
+        return false;
+    }
+    window.addEventListener('scroll',()=>{document.getElementById('main-nav').classList.toggle('scrolled',window.scrollY>80);});
+    updateCartBadge();
+</script>
+</body>
+</html>

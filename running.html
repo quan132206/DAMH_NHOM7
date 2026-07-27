@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cửa Hàng - Nike Redesign</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="toast" class="toast"></div>
+
+<nav class="main-nav" id="main-nav">
+    <div class="nav-inner">
+        <div class="nav-left">
+            <a href="index.html" class="nav-logo">
+                <svg viewBox="0 0 100 40" fill="white" class="w-10 h-8"><path d="M8 34 C14 30, 78 12, 94 6 C82 14, 18 32, 8 34Z"/></svg>
+                <span style="font-family:'Oswald',sans-serif;font-weight:700;font-size:20px;letter-spacing:3px;">NIKE</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Trang Chủ</a>
+                <a href="running.html" class="nav-link active">Cửa Hàng</a>
+                <a href="about.html" class="nav-link">Về Chúng Tôi</a>
+                <a href="contact.html" class="nav-link">Liên Hệ</a>
+            </div>
+        </div>
+        <div class="nav-right">
+            <a href="checkout.html" class="nav-icon"><i class="fa-solid fa-bag-shopping"></i><span id="cart-count" class="cart-badge">0</span></a>
+            <a href="account.html" class="nav-icon"><i class="fa-regular fa-user"></i></a>
+            <button class="mobile-toggle" onclick="toggleMobileMenu()" aria-label="Menu"><i class="fa-solid fa-bars"></i></button>
+        </div>
+    </div>
+    <div class="mobile-menu" id="mobile-menu">
+        <a href="index.html" class="nav-link">Trang Chủ</a>
+        <a href="running.html" class="nav-link active">Cửa Hàng</a>
+        <a href="about.html" class="nav-link">Về Chúng Tôi</a>
+        <a href="contact.html" class="nav-link">Liên Hệ</a>
+    </div>
+</nav>
+
+<div class="section">
+    <div class="breadcrumb page-header">
+        <a href="index.html">Trang Chủ</a>
+        <i class="fa-solid fa-chevron-right text-xs"></i>
+        <span style="color:#fff;">Cửa Hàng</span>
+    </div>
+    <h1 class="page-header" style="padding-bottom:0;">CỬA HÀNG</h1>
+
+    <div class="shop-layout">
+        <!-- ===== SIDEBAY BỘ LỌC ===== -->
+        <aside class="filter-sidebar">
+            <!-- Danh Mục -->
+            <div class="filter-section">
+                <h3>DANH MỤC</h3>
+                <label><input type="checkbox" value="chay-bo" class="filter-cat" checked> Chạy Bộ</label>
+                <label><input type="checkbox" value="dao-tao" class="filter-cat" checked> Đào Tạo</label>
+                <label><input type="checkbox" value="phong-cach" class="filter-cat" checked> Phong Cách</label>
+                <label><input type="checkbox" value="quan-ao" class="filter-cat" checked> Quần Áo</label>
+            </div>
+
+            <!-- Màu Sắc -->
+            <div class="filter-section">
+                <h3>MÀU SẮC</h3>
+                <div class="color-dots">
+                    <div class="color-dot active" data-color="all" style="background:linear-gradient(135deg,#fff 50%,#333 50%);" title="Tất cả" onclick="toggleColor(this)"></div>
+                    <div class="color-dot" data-color="den" style="background:#111;border:1px solid #333;" title="Đen" onclick="toggleColor(this)"></div>
+                    <div class="color-dot" data-color="trang" style="background:#f0f0f0;" title="Trắng" onclick="toggleColor(this)"></div>
+                    <div class="color-dot" data-color="xanh-la" style="background:#7db830;" title="Xanh Lá" onclick="toggleColor(this)"></div>
+                    <div class="color-dot" data-color="do" style="background:#e44;" title="Đỏ" onclick="toggleColor(this)"></div>
+                    <div class="color-dot" data-color="cam" style="background:#FF6B2B;" title="Cam" onclick="toggleColor(this)"></div>
+                    <div class="color-dot" data-color="xanh-duong" style="background:#2563eb;" title="Xanh Dương" onclick="toggleColor(this)"></div>
+                    <div class="color-dot" data-color="xam" style="background:#6b7280;" title="Xám" onclick="toggleColor(this)"></div>
+                    <div class="color-dot" data-color="bac" style="background:#c0c0c0;" title="Bạc" onclick="toggleColor(this)"></div>
+                </div>
+            </div>
+
+            <!-- Khoảng Giá -->
+            <div class="filter-section">
+                <h3>KHOẢNG GIÁ</h3>
+                <input type="range" min="0" max="300" value="300" id="price-range" oninput="updatePriceFilter()">
+                <div class="price-display">
+                    <span>$0</span>
+                    <span id="price-max-label">$300</span>
+                </div>
+            </div>
+
+            <!-- Kích Cỡ -->
+            <div class="filter-section">
+                <h3>KÍCH CỠ GIÀY</h3>
+                <div class="size-grid">
+                    <button class="size-btn" onclick="selectSize(this)">38</button>
+                    <button class="size-btn" onclick="selectSize(this)">39</button>
+                    <button class="size-btn" onclick="selectSize(this)">40</button>
+                    <button class="size-btn selected" onclick="selectSize(this)">41</button>
+                    <button class="size-btn" onclick="selectSize(this)">42</button>
+                    <button class="size-btn" onclick="selectSize(this)">43</button>
+                    <button class="size-btn" onclick="selectSize(this)">44</button>
+                    <button class="size-btn" onclick="selectSize(this)">45</button>
+                </div>
+            </div>
+
+            <!-- Thương Hiệu -->
+            <div class="filter-section">
+                <h3>THƯƠNG HIỆU</h3>
+                <label><input type="checkbox" value="nike-running" class="filter-brand" checked> Nike Running</label>
+                <label><input type="checkbox" value="nike-zoomx" class="filter-brand" checked> Nike ZoomX</label>
+                <label><input type="checkbox" value="nike-react" class="filter-brand" checked> Nike React</label>
+                <label><input type="checkbox" value="nike-air" class="filter-brand" checked> Nike Air</label>
+                <label><input type="checkbox" value="nike-sportswear" class="filter-brand" checked> Nike Sportswear</label>
+            </div>
+
+            <!-- Nút Xóa Lọc -->
+            <button class="btn-outline btn-sm" style="width:100%;margin-top:8px;" onclick="resetFilters()">XÓA BỘ LỌC</button>
+        </aside>
+
+        <!-- ===== NỘI DUNG SẢN PHẨM ===== -->
+        <div style="flex:1;">
+            <!-- Thanh Kết Quả -->
+            <div class="filter-results-bar">
+                <p class="result-count">Hiển thị <strong id="visible-count">0</strong> sản phẩm</p>
+                <button class="filter-clear-btn" onclick="resetFilters()">XÓA LỌC</button>
+            </div>
+
+            <!-- Lưới Sản Phẩm -->
+            <div class="grid-4" id="product-grid">
+                <!-- Sẽ được render bằng JS -->
+            </div>
+
+            <!-- Không Tìm Thấy -->
+            <div id="no-results" style="display:none;text-align:center;padding:80px 20px;">
+                <i class="fa-solid fa-filter-circle-xmark" style="font-size:48px;color:#222;margin-bottom:20px;"></i>
+                <h3 style="font-family:'Oswald',sans-serif;font-size:20px;letter-spacing:2px;margin-bottom:12px;">KHÔNG TÌM THẤY SẢN PHẨM</h3>
+                <p style="color:#555;margin-bottom:24px;">Thử thay đổi bộ lọc để xem thêm sản phẩm.</p>
+                <button class="btn-orange btn-sm" onclick="resetFilters()">XÓA BỘ LỌC</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="site-footer">
+    <div class="footer-inner">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div style="display:flex;align-items:center;gap:8px;">
+                    <svg viewBox="0 0 100 40" fill="white" class="w-8 h-6"><path d="M8 34 C14 30, 78 12, 94 6 C82 14, 18 32, 8 34Z"/></svg>
+                    <span style="font-family:'Oswald',sans-serif;font-weight:700;font-size:18px;letter-spacing:3px;">NIKE</span>
+                </div>
+                <p>Mang đến cảm hứng và đổi mới cho mọi vận động viên trên thế giới.</p>
+            </div>
+            <div class="footer-col"><h4>SẢN PHẨM</h4><ul><li><a href="running.html">Giày</a></li><li><a href="running.html">Quần Áo</a></li><li><a href="#">Phụ Kiện</a></li><li><a href="#">Hàng Mới</a></li></ul></div>
+            <div class="footer-col"><h4>THỂ THAO</h4><ul><li><a href="running.html">Chạy Bộ</a></li><li><a href="running.html">Đào Tạo</a></li><li><a href="#">Bóng Rổ</a></li><li><a href="#">Bóng Đá</a></li></ul></div>
+            <div class="footer-col"><h4>CÔNG TY</h4><ul><li><a href="about.html">Về Nike</a></li><li><a href="#">Bền Vững</a></li><li><a href="#">Tuyển Dụng</a></li><li><a href="#">Tin Tức</a></li></ul></div>
+            <div class="footer-col"><h4>HỖ TRỢ</h4><ul><li><a href="contact.html">Trung Tâm Trợ Giúp</a></li><li><a href="contact.html">Liên Hệ</a></li><li><a href="#">Đổi Trả</a></li><li><a href="#">Giao Hàng</a></li></ul></div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Nike, Inc. Mọi quyền được bảo lưu. Đây là bản thiết kế lại.</p>
+            <div class="footer-socials">
+                <a aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                <a aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                <a aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+/* ============================================
+   DỮ LIỆU 16 SẢN PHẨM NIKE
+   ============================================ */
+const products = [
+    {
+        id: 1, name: 'Nike Pegasus 41', price: 130, oldPrice: null,
+        category: 'chay-bo', colors: ['xanh-la', 'den'], brands: ['nike-running', 'nike-react'],
+        badge: 'best', badgeText: 'BÁN CHẠY',
+        img: 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=500&h=500&fit=crop&q=80'
+    },
+    {
+        id: 2, name: 'Nike Air Max 90', price: 140, oldPrice: null,
+        category: 'phong-cach', colors: ['trang', 'xanh-la'], brands: ['nike-air'],
+        badge: 'new', badgeText: 'MỚI',
+        img: 'https://images.unsplash.com/photo-1605348532760-6753d2c43329?w=500&h=500&fit=crop&q=80'
+    },
+    {
+        id: 3, name: 'Nike Dunk Low Retro', price: 110, oldPrice: null,
+        category: 'phong-cach', colors: ['den', 'trang'], brands: ['nike-air'],
+        badge: null, badgeText: '',
+        img: 'https://images.unsplash.com/photo-1597045566677-8cf032ed6634?w=500&h=500&fit=crop&q=80'
+    },
+    {
+        id: 4, name: 'Nike Air Force 1 \'07', price: 120, oldPrice: null,
+        category: 'phong-cach', colors: ['trang', 'den'], brands: ['nike-air'],
+        badge: null, badgeText: '',
+        img: 'https://images.unsplash.com/photo-1600269452121-4f2416e55c28?w=500&h=500&fit=crop&q=80'
+    },
+    {
+        id: 5, name: 'Nike ZoomX Vaporfly 3', price: 260, oldPrice: null,
+        category: 'chay-bo', colors: ['xanh-la', 'trang'], brands: ['nike-zoomx', 'nike-running'],
+        badge: 'new', badgeText: 'MỚI',
+        img: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&h=500&fit=crop&q=80'
+    },
+    {
+        id: 6, name: 'Nike Vomero 18', price: 160, oldPrice: 185,
+        category: 'chay-bo', colors: ['den', 'xanh-duong'], brands: ['nike-running', 'nike-react'],
+        badge: 'sale', badgeText: 'GIẢM GIÁ',
+        img: 'https://images.unsplash.com/photo-1584735175315-9d5df23860e6?w=500&h=500&fit=crop&q=80'
+    },
+    {
+        id: 7, name: 'Nike React Infinity RN 4', price: 165, oldPrice: null,
+        category: 'chay-bo', colors: ['xanh-duong', 'cam'], brands: ['nike-running', 'nike-react'],
+        badge: null, badgeText: '',
+        img: 'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=500&h=500&fit=crop&q=80'
+    },
+    {
+        id: 8, name: 'Nike Air Max Alpha', price: 150, oldPrice: null,
+        category: 'dao-tao', colors: ['den', 'trang'], brands: ['nike-air'],
+        badge: null, badgeText: '',
+        img: 'https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=500&h=500&fit=crop&q=80'
+    },
+    {
+        id: 9, name: 'Nike Metcon 9', price: 150, oldPrice: null,
+        category: 'dao-tao', colors: ['do', 'den'], brands: ['nike-running'],
+        badge: 'new', badgeText: 'MỚI',
+        img: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=500&h=500&fit=crop&q=80'
+    },
+    {
+        id: 10, name: 'Nike Air Max 97', price: 170, oldPrice: 195,
+        category: 'phong-cach', colors: ['bac', 'do'], brands: ['nike-air'],
+        badge: 'sale', badgeText: 'GIẢM GIÁ',
+        img: 'https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=500&h=500&fit=crop&q=80'
+    },
+    {
+        id: 11, name: 'Nike Blazer Mid \'77', price: 105, oldPrice: null,
+        category: 'phong-cach', colors: ['cam', 'trang'], brands: ['nike-air'],
+        badge: null, badgeText: '',
+        img: 'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=500&h=500&fit=crop&q=80'
+    },
+    {
+        id: 12, name: 'Nike Pegasus 40', price: 120, oldPrice: 130,
+        category: 'chay-bo', colors: ['xanh-duong', 'den'], brands: ['nike-running', 'nike-react'],
+        badge: 'sale', badgeText: 'GIẢM GIÁ',
+        img: 'https://images.unsplash.com/photo-1599058917212-d750089bc07e?w=500&h=500&fit=crop&q=80'
+    },
+    {
+        id: 13, name: 'Áo Thun Nike Dri-FIT', price: 35, oldPrice: null,
+        category: 'quan-ao', colors: ['den', 'trang', 'xanh-la'], brands: ['nike-sportswear'],
+        badge: null, badgeText: '',
+        img: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500&h=500&fit=crop&q=80'
+    },
+    {
+        id: 14, name: 'Áo Hoodie Nike Dri-FIT', price: 75, oldPrice: null,
+        category: 'quan-ao', colors: ['xam', 'den'], brands: ['nike-sportswear'],
+        badge: 'new', badgeText: 'MỚI',
+        img: 'https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=500&h=500&fit=crop&q=80'
+    },
+    {
+        id: 15, name: 'Áo Phông Thể Thao Nike', price: 45, oldPrice: null,
+        category: 'quan-ao', colors: ['den', 'xanh-duong', 'cam'], brands: ['nike-running', 'nike-sportswear'],
+        badge: null, badgeText: '',
+        img: 'https://images.unsplash.com/photo-1562157873-818bc0726f68?w=500&h=500&fit=crop&q=80'
+    },
+    {
+        id: 16, name: 'Quần Jogger Nike Sportswear', price: 85, oldPrice: 95,
+        category: 'quan-ao', colors: ['den', 'xam'], brands: ['nike-sportswear'],
+        badge: 'sale', badgeText: 'GIẢM GIÁ',
+        img: 'https://images.unsplash.com/photo-1584370848010-d7fe6bc767ec?w=500&h=500&fit=crop&q=80'
+    }
+];
+
+/* Tên danh mục tiếng Việt */
+const catNames = {
+    'chay-bo': 'Chạy Bộ',
+    'dao-tao': 'Đào Tạo',
+    'phong-cach': 'Phong Cách',
+    'quan-ao': 'Quần Áo'
+};
+
+/* --- Trạng thái lọc --- */
+let activeColor = 'all';
+
+/* --- Render sản phẩm --- */
+function renderProducts() {
+    const grid = document.getElementById('product-grid');
+    grid.innerHTML = '';
+    products.forEach(p => {
+        const badgeHtml = p.badge
+            ? `<span class="sc-badge sc-badge-${p.badge}">${p.badgeText}</span>`
+            : '';
+        const oldPriceHtml = p.oldPrice
+            ? `<span class="sc-price-old">$${p.oldPrice.toFixed(2)}</span>`
+            : '';
+        grid.innerHTML += `
+            <div class="shop-card" data-id="${p.id}" data-cat="${p.category}" data-colors="${p.colors.join(',')}" data-brands="${p.brands.join(',')}" data-price="${p.price}">
+                <div class="sc-img">
+                    ${badgeHtml}
+                    <img src="${p.img}" alt="${p.name}" loading="lazy">
+                </div>
+                <div class="sc-body">
+                    <p class="sc-category">${catNames[p.category] || p.category}</p>
+                    <p class="sc-name">${p.name.toUpperCase()}</p>
+                    <p class="sc-price">$${p.price.toFixed(2)}${oldPriceHtml}</p>
+                    <div class="sc-actions">
+                        <button class="sc-add-btn" onclick="addToCart('${p.name}', ${p.price})">THÊM VÀO GIỎ</button>
+                        <button class="sc-quick-btn" onclick="showToast('Xem nhanh: ${p.name}')" aria-label="Xem nhanh"><i class="fa-regular fa-eye"></i></button>
+                    </div>
+                </div>
+            </div>
+        `;
+    });
+}
+
+/* --- Bộ lọc chính --- */
+function applyFilters() {
+    /* Lấy giá trị lọc */
+    const checkedCats = Array.from(document.querySelectorAll('.filter-cat:checked')).map(c => c.value);
+    const checkedBrands = Array.from(document.querySelectorAll('.filter-brand:checked')).map(b => b.value);
+    const maxPrice = parseInt(document.getElementById('price-range').value);
+
+    const cards = document.querySelectorAll('.shop-card');
+    let visibleCount = 0;
+
+    cards.forEach(card => {
+        const cardCat = card.dataset.cat;
+        const cardColors = card.dataset.colors.split(',');
+        const cardBrands = card.dataset.brands.split(',');
+        const cardPrice = parseFloat(card.dataset.price);
+
+        const catMatch = checkedCats.length === 0 || checkedCats.includes(cardCat);
+        const colorMatch = activeColor === 'all' || cardColors.includes(activeColor);
+        const brandMatch = checkedBrands.length === 0 || cardBrands.some(b => checkedBrands.includes(b));
+        const priceMatch = cardPrice <= maxPrice;
+
+        if (catMatch && colorMatch && brandMatch && priceMatch) {
+            card.classList.remove('hidden');
+            visibleCount++;
+        } else {
+            card.classList.add('hidden');
+        }
+    });
+
+    document.getElementById('visible-count').textContent = visibleCount;
+    document.getElementById('no-results').style.display = visibleCount === 0 ? 'block' : 'none';
+}
+
+/* --- Lọc màu --- */
+function toggleColor(dot) {
+    document.querySelectorAll('.color-dot').forEach(d => d.classList.remove('active'));
+    dot.classList.add('active');
+    activeColor = dot.dataset.color;
+    applyFilters();
+}
+
+/* --- Lọc giá --- */
+function updatePriceFilter() {
+    const val = document.getElementById('price-range').value;
+    document.getElementById('price-max-label').textContent = '$' + val;
+    applyFilters();
+}
+
+/* --- Xóa bộ lọc --- */
+function resetFilters() {
+    activeColor = 'all';
+    document.querySelectorAll('.color-dot').forEach(d => d.classList.remove('active'));
+    document.querySelector('.color-dot[data-color="all"]').classList.add('active');
+    document.querySelectorAll('.filter-cat, .filter-brand').forEach(c => c.checked = true);
+    document.getElementById('price-range').value = 300;
+    document.getElementById('price-max-label').textContent = '$300';
+    applyFilters();
+    showToast('Đã xóa bộ lọc');
+}
+
+/* --- Lắng nghe thay đổi checkbox --- */
+document.addEventListener('change', function(e) {
+    if (e.target.classList.contains('filter-cat') || e.target.classList.contains('filter-brand')) {
+        applyFilters();
+    }
+});
+
+/* --- Giỏ hàng --- */
+function getCart() { try { return JSON.parse(localStorage.getItem('nike_cart')) || []; } catch(e) { return []; } }
+function saveCart(c) { localStorage.setItem('nike_cart', JSON.stringify(c)); updateCartBadge(); }
+function addToCart(n, p) {
+    const c = getCart();
+    const e = c.find(i => i.name === n);
+    if (e) e.qty++; else c.push({ name: n, price: p, qty: 1 });
+    saveCart(c);
+    showToast('Đã thêm ' + n + ' vào giỏ hàng');
+}
+function updateCartBadge() {
+    const c = getCart();
+    const b = document.getElementById('cart-count');
+    const n = c.reduce((s, i) => s + i.qty, 0);
+    b.textContent = n;
+    b.style.display = n > 0 ? 'flex' : 'none';
+}
+
+/* --- Toast --- */
+function showToast(m) {
+    const t = document.getElementById('toast');
+    t.textContent = m;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+/* --- Size selector (trang chi tiết, không ảnh hưởng lọc) --- */
+function selectSize(btn) {
+    btn.parentElement.querySelectorAll('.size-btn').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+}
+
+/* --- Mobile menu --- */
+function toggleMobileMenu() { document.getElementById('mobile-menu').classList.toggle('open'); }
+
+/* --- Scroll nav --- */
+window.addEventListener('scroll', () => {
+    document.getElementById('main-nav').classList.toggle('scrolled', window.scrollY > 80);
+});
+
+/* --- Khởi tạo --- */
+renderProducts();
+applyFilters();
+updateCartBadge();
+</script>
+</body>
+</html>
